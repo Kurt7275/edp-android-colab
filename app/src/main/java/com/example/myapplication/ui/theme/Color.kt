@@ -2,26 +2,31 @@ package com.example.myapplication.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Light Palette
-val PrimaryLight = Color(0xFF800000) // Deep Maroon
-val OnPrimaryLight = Color(0xFFFFFFFF)
-val PrimaryContainerLight = Color(0xFF600000) // Darker Maroon for TopBar
-val SecondaryLight = Color(0xFF800000)
-val SurfaceLight = Color(0xFFFFFFFF) // White background for readability
-val OnSurfaceVariantLight = Color(0xFF400000) // Maroon-tinted muted text
+// ──────────────────────────────────────────────────────────────────
+// "Liceo Maroon" Material 3 Palette
+// DO NOT EDIT — theme is provided; read from it in ProfileScreen.kt
+// ──────────────────────────────────────────────────────────────────
 
-// Dark Palette
-val PrimaryDark = Color(0xFFFFB4AB) // Light Maroon/Coral for dark mode
-val OnPrimaryDark = Color(0xFF690005)
-val PrimaryContainerDark = Color(0xFF93000A)
-val SecondaryDark = Color(0xFFE7BDB8)
-val SurfaceDark = Color(0xFF1A1110)
-val OnSurfaceVariantDark = Color(0xFFD8C2C0)
+// Light scheme
+val LiceoMaroon        = Color(0xFF7B0000)   // primary (deep maroon)
+val OnLiceoMaroon      = Color(0xFFFFFFFF)   // onPrimary
+val MaroonContainer    = Color(0xFF5A0000)   // primaryContainer (darker maroon for TopBar)
+val OnMaroonContainer  = Color(0xFFFFDAD6)   // onPrimaryContainer
+val MaroonSecondary    = Color(0xFF9C3A3A)   // secondary (muted maroon-rose)
+val OnMaroonSecondary  = Color(0xFFFFFFFF)   // onSecondary
+val SurfaceLight       = Color(0xFFFFF8F7)   // surface (warm near-white)
+val SurfaceVariantLight= Color(0xFFF4DFDF)   // surfaceVariant (pinkish card background)
+val OnSurfaceLight     = Color(0xFF201A1A)   // onSurface
+val OnSurfaceVarLight  = Color(0xFF524344)   // onSurfaceVariant
 
-// Original template colors (keeping for compatibility if needed)
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// Dark scheme
+val MaroonPrimaryDark      = Color(0xFFFFB3AE)  // primary
+val OnMaroonPrimaryDark    = Color(0xFF680003)  // onPrimary
+val MaroonContainerDark    = Color(0xFF930009)  // primaryContainer
+val OnMaroonContainerDark  = Color(0xFFFFDAD6)  // onPrimaryContainer
+val SecondaryDark          = Color(0xFFE8B8B8)  // secondary
+val OnSecondaryDark        = Color(0xFF5C1C1C)  // onSecondary
+val SurfaceDark            = Color(0xFF201A1A)  // surface
+val SurfaceVariantDark     = Color(0xFF524344)  // surfaceVariant
+val OnSurfaceDark          = Color(0xFFEDE0DF)  // onSurface
+val OnSurfaceVarDark       = Color(0xFFD8C2BF)  // onSurfaceVariant
