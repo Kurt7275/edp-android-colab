@@ -39,6 +39,7 @@ class MainActivity : ComponentActivity() {
                         }
 
                         // Destination 2: Greeting screen
+
                         composable<Greeting> { backStackEntry ->
                             // Unpack the typed Greeting object from the back stack
                             val greeting: Greeting = backStackEntry.toRoute()
@@ -49,4 +50,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
+}
