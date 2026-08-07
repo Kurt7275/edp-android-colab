@@ -4,21 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,43 +19,34 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyApplicationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ProfileScreen(
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
+
+                    // Create the NavController — manages the back stack
+                    val navController = rememberNavController()
+
+                    // Build the navigation graph with two destinations
+                    NavHost(
+                        navController = navController,
+                        startDestination = Home  // Home is shown first
+                    ) {
+
+                        // Destination 1: Home screen
+                        composable<Home> {
+                            HomeScreen(onShowGreeting = { typedName ->
+                                // Navigate to Greeting, passing the typed name as a route object
+                                navController.navigate(Greeting(userName = typedName))
+                            })
+                        }
+
+                        // Destination 2: Greeting screen
+                        composable<Greeting> { backStackEntry ->
+                            // Unpack the typed Greeting object from the back stack
+                            val greeting: Greeting = backStackEntry.toRoute()
+                            GreetingScreen(userName = greeting.userName)
+                        }
+                    }
                 }
             }
         }
     }
-}
-
-@Composable
-fun Greeting(
-    name: String,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier.padding (all =16.dp)
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surfaceDim)
-            .padding(all = 26.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Hello Sean Ra",
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(20.dp)
-        )
-    }
-}
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyApplicationTheme {
-        Greeting("Android")
-    }
-}
+}
