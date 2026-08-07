@@ -28,8 +28,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    ProfileScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
