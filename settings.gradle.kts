@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LiceoFieldKit"
+rootProject.name = "LiceoAccount"
 include(":app")

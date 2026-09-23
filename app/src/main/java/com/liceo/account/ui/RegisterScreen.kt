@@ -1,0 +1,39 @@
+package com.liceo.account.ui
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun RegisterScreen(state: AuthUiState, onCreate: (String, String, String, String) -> Unit, onGoToLogin: () -> Unit) {
+    var fullName by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var birthdate by rememberSaveable { mutableStateOf("") }
+    val isLoading = state is AuthUiState.Loading
+    Column(Modifier.fillMaxSize().systemBarsPadding().imePadding().verticalScroll(rememberScrollState()).padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Text("Create account", style = MaterialTheme.typography.headlineMedium)
+        OutlinedTextField(fullName, { fullName = it }, label = { Text("Full name") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+        OutlinedTextField(email, { email = it }, label = { Text("Email") }, singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
+        OutlinedTextField(password, { password = it }, label = { Text("Password") }, singleLine = true, visualTransformation = PasswordVisualTransformation(), keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password), modifier = Modifier.fillMaxWidth())
+        OutlinedTextField(birthdate, { birthdate = it }, label = { Text("Birthdate") }, placeholder = { Text("YYYY-MM-DD") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+        when (state) {
+            is AuthUiState.Error -> Text(state.message, color = MaterialTheme.colorScheme.error)
+            is AuthUiState.AccountCreated -> Text("Account created for ${state.name}. You can now log in.", color = Color(0xFF2E7D32))
+            else -> Unit
+        }
+        Button(onClick = { onCreate(fullName, email, password, birthdate) }, enabled = !isLoading, modifier = Modifier.fillMaxWidth()) {
+            if (isLoading) CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp) else Text("Create account")
+        }
+        TextButton(onClick = onGoToLogin, modifier = Modifier.fillMaxWidth()) { Text("Already have an account? Log in") }
+    }
+}

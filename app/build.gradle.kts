@@ -1,10 +1,11 @@
 ﻿plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "edu.liceo.fieldkit"
+    namespace = "com.liceo.account"
     compileSdk {
         version = release(37) {
             minorApiLevel = 1
@@ -12,7 +13,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "edu.liceo.fieldkit"
+        applicationId = "com.liceo.account"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -43,15 +44,11 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    // GIVEN: Lab 12 libraries
-    val cx = "1.6.1"
-    implementation("androidx.camera:camera-camera2:$cx")
-    implementation("androidx.camera:camera-lifecycle:$cx")
-    implementation("androidx.camera:camera-compose:$cx")
-    implementation("com.google.android.gms:play-services-location:21.4.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
-
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.serialization.json)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.okhttp.logging)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
@@ -60,5 +57,3 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
 }
-
-

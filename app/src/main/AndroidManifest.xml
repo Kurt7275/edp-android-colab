@@ -1,15 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- TODO 1a: uses-permission CAMERA (runtime) -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- TODO 1b: uses-permission ACCESS_FINE_LOCATION and ACCESS_COARSE_LOCATION -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- TODO 1c: uses-permission VIBRATE (normal, used by the bonus) -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- TODO 1d: uses-feature android.hardware.camera with required="false" -->
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,12 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LiceoFieldKit">
+        android:theme="@style/Theme.LiceoAccount">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.LiceoFieldKit">
+            android:theme="@style/Theme.LiceoAccount">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
